@@ -21,6 +21,9 @@
 		A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C41E215A523D0065D69A /* ExtensionDelegate.swift */; };
 		A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C420215A523D0065D69A /* NotificationController.swift */; };
 		A2B9C423215A523D0065D69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C422215A523D0065D69A /* Assets.xcassets */; };
+		F1CE2390215A831100077508 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F1CE238F215A831100077508 /* README.md */; };
+		F1CE2393215A836200077508 /* iphone_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2392215A836200077508 /* iphone_design.png */; };
+		F1CE2395215A838E00077508 /* watch_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2394215A838E00077508 /* watch_design.png */; };
 		A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C436215A72370065D69A /* database.xcdatamodeld */; };
 		A2B9C43A215A7FDA0065D69A /* RemedioRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C439215A7FDA0065D69A /* RemedioRowController.swift */; };
 		A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
@@ -97,6 +100,9 @@
 		A2B9C422215A523D0065D69A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C424215A523D0065D69A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F1CE2392215A836200077508 /* iphone_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_design.png; sourceTree = "<group>"; };
+		F1CE2394215A838E00077508 /* watch_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_design.png; sourceTree = "<group>"; };
 		A2B9C437215A72370065D69A /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		A2B9C439215A7FDA0065D69A /* RemedioRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedioRowController.swift; sourceTree = "<group>"; };
 		A2B9C43B215A823C0065D69A /* Remedio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remedio.swift; sourceTree = "<group>"; };
@@ -130,11 +136,13 @@
 		A2B9C3E2215A523A0065D69A = {
 			isa = PBXGroup;
 			children = (
+				F1CE238F215A831100077508 /* README.md */,
 				A2B9C3ED215A523A0065D69A /* WatchTest */,
 				A2B9C402215A523C0065D69A /* WatchTestTests */,
 				A2B9C40C215A523C0065D69A /* WatchTest WatchKit App */,
 				A2B9C41B215A523D0065D69A /* WatchTest WatchKit Extension */,
 				A2B9C3EC215A523A0065D69A /* Products */,
+				F1CE2391215A833400077508 /* resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +203,15 @@
 				A2B9C439215A7FDA0065D69A /* RemedioRowController.swift */,
 			);
 			path = "WatchTest WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		F1CE2391215A833400077508 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				F1CE2392215A836200077508 /* iphone_design.png */,
+				F1CE2394215A838E00077508 /* watch_design.png */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,8 +339,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1CE2393215A836200077508 /* iphone_design.png in Resources */,
 				A2B9C3F9215A523C0065D69A /* LaunchScreen.storyboard in Resources */,
 				A2B9C3F6215A523C0065D69A /* Assets.xcassets in Resources */,
+				F1CE2390215A831100077508 /* README.md in Resources */,
+				F1CE2395215A838E00077508 /* watch_design.png in Resources */,
 				A2B9C3F4215A523A0065D69A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

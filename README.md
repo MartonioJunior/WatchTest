@@ -20,3 +20,11 @@ Watch
 Notificações de quando tomar o remédio
 Listar remédios
 “Tomar” remédio
+# Design resources
+
+## Iphone
+[telas do iphone](https://github.com/MartonioJunior/WatchTest/resources/iphone_design.png)
+
+## Wacth
+
+[telas do apple watch](https://github.com/MartonioJunior/WatchTest/resouces/watch_design.png) 
