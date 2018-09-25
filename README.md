@@ -23,8 +23,8 @@ Listar remédios
 # Design resources
 
 ## Iphone
-[telas do iphone](https://github.com/MartonioJunior/WatchTest/resources/iphone_design.png)
+[telas do iphone](https://github.com/MartonioJunior/WatchTest/blob/master/resources/iphone_design.png)
 
 ## Wacth
 
-[telas do apple watch](https://github.com/MartonioJunior/WatchTest/resouces/watch_design.png) 
+[telas do apple watch](https://github.com/MartonioJunior/WatchTest/blob/master/resources/watch_design.png) 
