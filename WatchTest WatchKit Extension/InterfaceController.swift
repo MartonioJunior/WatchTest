@@ -11,11 +11,15 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
-
+    @IBOutlet var tableRemedios: WKInterfaceTable!
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        // Configure interface objects here.
+        for index in 0..<tableRemedios.numberOfRows {
+            guard let controller = flightsTable.rowController(at: index) as? FlightRowController else { continue }
+            
+            controller.flight = flights[index]
+        }
     }
     
     override func willActivate() {

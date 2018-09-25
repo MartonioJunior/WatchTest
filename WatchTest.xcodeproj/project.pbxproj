@@ -21,6 +21,9 @@
 		A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C41E215A523D0065D69A /* ExtensionDelegate.swift */; };
 		A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C420215A523D0065D69A /* NotificationController.swift */; };
 		A2B9C423215A523D0065D69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C422215A523D0065D69A /* Assets.xcassets */; };
+		A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C436215A72370065D69A /* database.xcdatamodeld */; };
+		A2B9C43A215A7FDA0065D69A /* RemedioRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C439215A7FDA0065D69A /* RemedioRowController.swift */; };
+		A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		A2B9C422215A523D0065D69A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C424215A523D0065D69A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		A2B9C437215A72370065D69A /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
+		A2B9C439215A7FDA0065D69A /* RemedioRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedioRowController.swift; sourceTree = "<group>"; };
+		A2B9C43B215A823C0065D69A /* Remedio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remedio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,8 @@
 				A2B9C3F5215A523C0065D69A /* Assets.xcassets */,
 				A2B9C3F7215A523C0065D69A /* LaunchScreen.storyboard */,
 				A2B9C3FA215A523C0065D69A /* Info.plist */,
+				A2B9C436215A72370065D69A /* database.xcdatamodeld */,
+				A2B9C43B215A823C0065D69A /* Remedio.swift */,
 			);
 			path = WatchTest;
 			sourceTree = "<group>";
@@ -184,6 +192,7 @@
 				A2B9C422215A523D0065D69A /* Assets.xcassets */,
 				A2B9C424215A523D0065D69A /* Info.plist */,
 				A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */,
+				A2B9C439215A7FDA0065D69A /* RemedioRowController.swift */,
 			);
 			path = "WatchTest WatchKit Extension";
 			sourceTree = "<group>";
@@ -350,6 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */,
+				A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */,
 				A2B9C3F1215A523A0065D69A /* ViewController.swift in Sources */,
 				A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */,
 			);
@@ -369,6 +380,7 @@
 			files = (
 				A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */,
 				A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */,
+				A2B9C43A215A7FDA0065D69A /* RemedioRowController.swift in Sources */,
 				A2B9C41D215A523D0065D69A /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,6 +748,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A2B9C436215A72370065D69A /* database.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A2B9C437215A72370065D69A /* database.xcdatamodel */,
+			);
+			currentVersion = A2B9C437215A72370065D69A /* database.xcdatamodel */;
+			path = database.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A2B9C3E3215A523A0065D69A /* Project object */;
 }
