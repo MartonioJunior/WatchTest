@@ -41,7 +41,7 @@
                         </table>
                     </items>
                     <connections>
-                        <outlet property="tableRemedios" destination="fow-r9-Oec" id="SYF-Nj-Ey2"/>
+                        <outlet property="tableRemedies" destination="fow-r9-Oec" id="jHU-jw-Plg"/>
                         <segue destination="8BP-Rz-R5S" kind="relationship" relationship="nextPage" id="S4F-Ic-aQ3"/>
                     </connections>
                 </controller>

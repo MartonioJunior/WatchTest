@@ -11,14 +11,15 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
-    @IBOutlet var tableRemedios: WKInterfaceTable!
+    @IBOutlet var tableRemedies: WKInterfaceTable!
+    var remedies = [Remedy]()
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        for index in 0..<tableRemedios.numberOfRows {
-            guard let controller = flightsTable.rowController(at: index) as? FlightRowController else { continue }
+        for index in 0..<tableRemedies.numberOfRows {
+            guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { continue }
             
-            controller.flight = flights[index]
+            controller.remedy = remedies[index]
         }
     }
     

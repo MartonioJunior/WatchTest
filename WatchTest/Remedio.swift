@@ -8,16 +8,18 @@
 
 import UIKit
 
-class Remedio {
-    var nome: String
-    var intervalo: Int
-    var descricao: String
-    var dataInicio: Date
+class Remedy {
+    var name: String
+    var interval: Int
+    var remedyDescription: String
+    var startDate: Date
+    var taken: Bool
     
-    init(nome: String, intervalo: Int, descricao: String, dataInicio: Date) {
-        self.nome = nome
-        self.intervalo = intervalo
-        self.dataInicio = dataInicio
-        self.descricao = descricao
+    init(name: String, interval: Int, description: String, startDate: Date, taken: Bool) {
+        self.name = name
+        self.interval = interval
+        self.startDate = startDate
+        self.remedyDescription = description
+        self.taken = taken
     }
 }
