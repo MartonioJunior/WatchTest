@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Remedies-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchTest_WatchKit_App" customModuleProvider="target">
+                <controller identifier="Remedies" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchTest_WatchKit_App" customModuleProvider="target">
                     <items>
                         <label alignment="center" text="Today" textAlignment="center" id="fs0-qd-ptj">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -20,13 +20,15 @@
                         </label>
                         <table alignment="left" id="fow-r9-Oec">
                             <items>
-                                <tableRow identifier="TableRemedio" id="w3I-2X-2CH" customClass="RemedioRowController" customModule="WatchTest_WatchKit_Extension">
+                                <tableRow identifier="TableRemedy" id="w3I-2X-2CH" customClass="RemedyRowController" customModule="WatchTest_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="4aR-sp-LZO">
                                         <items>
                                             <label width="80" height="84" alignment="left" verticalAlignment="center" text="Tylenol" textAlignment="left" numberOfLines="0" id="OyC-3a-YVz">
+                                                <accessibilityTraits key="accessibilityTraits" none="YES"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                             </label>
                                             <label alignment="right" verticalAlignment="center" text="11:30" textAlignment="right" id="kkK-6B-oUN">
+                                                <accessibilityTraits key="accessibilityTraits" none="YES"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                             </label>
                                         </items>
@@ -42,16 +44,15 @@
                     </items>
                     <connections>
                         <outlet property="tableRemedies" destination="fow-r9-Oec" id="jHU-jw-Plg"/>
-                        <segue destination="8BP-Rz-R5S" kind="relationship" relationship="nextPage" id="S4F-Ic-aQ3"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Detail-->
         <scene sceneID="g8p-pz-rat">
             <objects>
-                <controller id="8BP-Rz-R5S">
+                <controller identifier="Detail" id="8BP-Rz-R5S" customClass="DetailInterfaceController" customModule="WatchTest_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Tylenol" textAlignment="center" id="bP8-Eq-bIR">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,13 +65,23 @@
                             <items>
                                 <button width="60" alignment="left" title="Tomar" id="9dX-Zx-Uet">
                                     <color key="backgroundColor" red="0.30411011424598811" green="0.83149587563451777" blue="0.23868810582044631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="takeRemedy" destination="8BP-Rz-R5S" id="MUc-KL-5tb"/>
+                                    </connections>
                                 </button>
                                 <button width="60" alignment="left" title="Adiar" id="bLR-4E-xkv">
                                     <color key="backgroundColor" red="1" green="0.57223520607721778" blue="0.2870586767953629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="delayRemedy" destination="8BP-Rz-R5S" id="aYs-Kw-8cs"/>
+                                    </connections>
                                 </button>
                             </items>
                         </group>
                     </items>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="T0q-za-KMP" id="WiS-s4-PvS"/>
+                        <outlet property="titleLabel" destination="bP8-Eq-bIR" id="yiS-aX-0hP"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="468" y="345"/>
@@ -78,13 +89,13 @@
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
-                <notificationController id="YCC-NB-fut">
+                <notificationController id="YCC-NB-fut" customClass="NotificationController" customModule="WatchTest_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
                     </items>
                     <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
                     <connections>
-                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="ad6-hK-Hoy"/>
                         <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
                     </connections>
                 </notificationController>

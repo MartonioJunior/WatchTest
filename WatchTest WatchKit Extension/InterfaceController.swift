@@ -7,25 +7,64 @@
 //
 
 import WatchKit
+import WatchConnectivity
 import Foundation
 
+var watchSession = WCSession.default
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet var tableRemedies: WKInterfaceTable!
-    var remedies = [Remedy]()
+    var remedies: [Remedy] = []
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        for index in 0..<tableRemedies.numberOfRows {
-            guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { continue }
-            
-            controller.remedy = remedies[index]
+        watchSession.delegate = self
+        watchSession.activate()
+        watchSession.sendMessage(["getRemediesForToday" : ""], replyHandler: { (response: [String:Any]) in
+            self.remedies = response["remedies"] as! [Remedy]
+        }) { (e) in
+            let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
+                self.dismiss()
+            })
+            self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
+            self.remedies.append(Remedy(name: "Luftal", interval: 60, description: "Para dor de barriga", startDate: Date(), taken: false))
         }
+    }
+    
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        presentController(withName: "Detail", context: remedies[rowIndex])
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        //self.tableRemedies.setNumberOfRows(remedies.count, withRowType: "TableRemedy")
+        self.remedies = (self.remedies.filter { (remedy: Remedy) -> Bool in
+            return !remedy.taken
+        }).sorted(by: { (r1, r2) -> Bool in
+            let calendar = Calendar.current
+            let r1Components = calendar.dateComponents([.hour,.minute], from: r1.startDate)
+            let r2Components = calendar.dateComponents([.hour,.minute], from: r2.startDate)
+            if r1Components.hour == r2Components.hour {
+                return (r1Components.minute ?? 0) < (r2Components.minute ?? 0)
+            } else {
+                return (r1Components.hour ?? 0) < (r2Components.hour ?? 0)
+            }
+        })
+        
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "hh:mm"
+        
+        tableRemedies.setNumberOfRows(remedies.count, withRowType: "TableRemedy")
+        
+        for index in 0..<self.tableRemedies.numberOfRows {
+            guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { continue }
+            let remedy = remedies[index]
+            controller.remedy = remedy
+            controller.nomeLabel.setText(remedy.name)
+            let time = dateFormat.string(from: remedy.startDate)
+            controller.timeLabel.setText(time)
+        }
     }
     
     override func didDeactivate() {
@@ -33,4 +72,14 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+}
+
+extension InterfaceController: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("Session activation complete")
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("Watch received: \(applicationContext)")
+    }
 }

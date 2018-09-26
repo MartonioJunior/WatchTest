@@ -216,6 +216,7 @@
 				A2B9C424215A523D0065D69A /* Info.plist */,
 				A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */,
 				A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */,
+				A2B9C43E215BADCB0065D69A /* DetailInterfaceController.swift */,
 			);
 			path = "WatchTest WatchKit Extension";
 			sourceTree = "<group>";
@@ -447,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B9C43F215BADCB0065D69A /* DetailInterfaceController.swift in Sources */,
 				A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */,
 				A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */,
 				A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */,

@@ -12,17 +12,20 @@ import UserNotifications
 
 
 class NotificationController: WKUserNotificationInterfaceController {
-
+    
     override init() {
         // Initialize variables here.
         super.init()
-        
         // Configure interface objects here.
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        let remedyAmountToday = 5
+        if remedyAmountToday > 0 {
+            //notificationAlertLabel.setText("Você têm \(remedyAmountToday) remédio"+(remedyAmountToday <= 1 ? "" : "s")+" para tomar hoje")
+        }
     }
 
     override func didDeactivate() {
