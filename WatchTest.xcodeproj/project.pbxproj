@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C3EE215A523A0065D69A /* AppDelegate.swift */; };
-		A2B9C3F1215A523A0065D69A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C3F0215A523A0065D69A /* ViewController.swift */; };
 		A2B9C3F4215A523A0065D69A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C3F2215A523A0065D69A /* Main.storyboard */; };
 		A2B9C3F6215A523C0065D69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C3F5215A523C0065D69A /* Assets.xcassets */; };
 		A2B9C3F9215A523C0065D69A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C3F7215A523C0065D69A /* LaunchScreen.storyboard */; };
@@ -25,6 +24,13 @@
 		A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */; };
 		A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
 		A2B9C43D215BA8890065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
+		BE5EB293215BAC42002D45D9 /* InitialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EB292215BAC42002D45D9 /* InitialTableViewController.swift */; };
+		BE5EB299215BAD5E002D45D9 /* RemedyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EB297215BAD5E002D45D9 /* RemedyTableViewCell.swift */; };
+		BE5EB29A215BAD5E002D45D9 /* RemedyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5EB298215BAD5E002D45D9 /* RemedyTableViewCell.xib */; };
+		BE5EB29E215BAF87002D45D9 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EB29D215BAF87002D45D9 /* ReusableView.swift */; };
+		BE5EB2A0215BAF91002D45D9 /* ReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5EB29F215BAF91002D45D9 /* ReusableView.xib */; };
+		BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */; };
+		BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */; };
 		F1CE2390215A831100077508 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F1CE238F215A831100077508 /* README.md */; };
 		F1CE2393215A836200077508 /* iphone_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2392215A836200077508 /* iphone_design.png */; };
 		F1CE2395215A838E00077508 /* watch_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2394215A838E00077508 /* watch_design.png */; };
@@ -82,7 +88,6 @@
 /* Begin PBXFileReference section */
 		A2B9C3EB215A523A0065D69A /* WatchTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C3EE215A523A0065D69A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A2B9C3F0215A523A0065D69A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A2B9C3F3215A523A0065D69A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2B9C3F5215A523C0065D69A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2B9C3F8215A523C0065D69A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,6 +109,13 @@
 		A2B9C437215A72370065D69A /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyRowController.swift; sourceTree = "<group>"; };
 		A2B9C43B215A823C0065D69A /* Remedio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remedio.swift; sourceTree = "<group>"; };
+		BE5EB292215BAC42002D45D9 /* InitialTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialTableViewController.swift; sourceTree = "<group>"; };
+		BE5EB297215BAD5E002D45D9 /* RemedyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyTableViewCell.swift; sourceTree = "<group>"; };
+		BE5EB298215BAD5E002D45D9 /* RemedyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RemedyTableViewCell.xib; sourceTree = "<group>"; };
+		BE5EB29D215BAF87002D45D9 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		BE5EB29F215BAF91002D45D9 /* ReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableView.xib; sourceTree = "<group>"; };
+		BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemedyViewController.swift; sourceTree = "<group>"; };
 		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F1CE2392215A836200077508 /* iphone_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_design.png; sourceTree = "<group>"; };
 		F1CE2394215A838E00077508 /* watch_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_design.png; sourceTree = "<group>"; };
@@ -161,14 +173,16 @@
 		A2B9C3ED215A523A0065D69A /* WatchTest */ = {
 			isa = PBXGroup;
 			children = (
+				BE5EB295215BAD04002D45D9 /* Views */,
+				BE5EB294215BAD00002D45D9 /* Controllers */,
+				BE5EB296215BAD09002D45D9 /* Models */,
 				A2B9C3EE215A523A0065D69A /* AppDelegate.swift */,
-				A2B9C3F0215A523A0065D69A /* ViewController.swift */,
+				BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */,
 				A2B9C3F2215A523A0065D69A /* Main.storyboard */,
 				A2B9C3F5215A523C0065D69A /* Assets.xcassets */,
 				A2B9C3F7215A523C0065D69A /* LaunchScreen.storyboard */,
 				A2B9C3FA215A523C0065D69A /* Info.plist */,
 				A2B9C436215A72370065D69A /* database.xcdatamodeld */,
-				A2B9C43B215A823C0065D69A /* Remedio.swift */,
 			);
 			path = WatchTest;
 			sourceTree = "<group>";
@@ -204,6 +218,34 @@
 				A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */,
 			);
 			path = "WatchTest WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		BE5EB294215BAD00002D45D9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE5EB292215BAC42002D45D9 /* InitialTableViewController.swift */,
+				BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BE5EB295215BAD04002D45D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE5EB297215BAD5E002D45D9 /* RemedyTableViewCell.swift */,
+				BE5EB298215BAD5E002D45D9 /* RemedyTableViewCell.xib */,
+				BE5EB29D215BAF87002D45D9 /* ReusableView.swift */,
+				BE5EB29F215BAF91002D45D9 /* ReusableView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE5EB296215BAD09002D45D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A2B9C43B215A823C0065D69A /* Remedio.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F1CE2391215A833400077508 /* resources */ = {
@@ -344,8 +386,10 @@
 				A2B9C3F9215A523C0065D69A /* LaunchScreen.storyboard in Resources */,
 				A2B9C3F6215A523C0065D69A /* Assets.xcassets in Resources */,
 				F1CE2390215A831100077508 /* README.md in Resources */,
+				BE5EB29A215BAD5E002D45D9 /* RemedyTableViewCell.xib in Resources */,
 				F1CE2395215A838E00077508 /* watch_design.png in Resources */,
 				A2B9C3F4215A523A0065D69A /* Main.storyboard in Resources */,
+				BE5EB2A0215BAF91002D45D9 /* ReusableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,10 +424,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE5EB293215BAC42002D45D9 /* InitialTableViewController.swift in Sources */,
 				A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */,
 				A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */,
-				A2B9C3F1215A523A0065D69A /* ViewController.swift in Sources */,
+				BE5EB29E215BAF87002D45D9 /* ReusableView.swift in Sources */,
 				A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */,
+				BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */,
+				BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */,
+				BE5EB299215BAD5E002D45D9 /* RemedyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
