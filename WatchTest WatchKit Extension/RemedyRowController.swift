@@ -12,15 +12,5 @@ import WatchKit
 class RemedyRowController: NSObject {
     @IBOutlet var nomeLabel: WKInterfaceLabel!
     @IBOutlet var timeLabel: WKInterfaceLabel!
-    
-    var remedy: Remedy? {
-        didSet {
-            guard let remedy = remedy else { return }
-            nomeLabel.setText(remedy.name)
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "hh:mm"
-            let time = dateFormat.string(from: remedy.startDate)
-            timeLabel.setText(time)
-        }
-    }
+    var remedy: Remedy?
 }

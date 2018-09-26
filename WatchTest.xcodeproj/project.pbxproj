@@ -25,6 +25,7 @@
 		A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */; };
 		A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
 		A2B9C43D215BA8890065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
+		A2B9C43F215BADCB0065D69A /* DetailInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43E215BADCB0065D69A /* DetailInterfaceController.swift */; };
 		F1CE2390215A831100077508 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F1CE238F215A831100077508 /* README.md */; };
 		F1CE2393215A836200077508 /* iphone_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2392215A836200077508 /* iphone_design.png */; };
 		F1CE2395215A838E00077508 /* watch_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2394215A838E00077508 /* watch_design.png */; };
@@ -104,6 +105,7 @@
 		A2B9C437215A72370065D69A /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyRowController.swift; sourceTree = "<group>"; };
 		A2B9C43B215A823C0065D69A /* Remedio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remedio.swift; sourceTree = "<group>"; };
+		A2B9C43E215BADCB0065D69A /* DetailInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInterfaceController.swift; sourceTree = "<group>"; };
 		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F1CE2392215A836200077508 /* iphone_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_design.png; sourceTree = "<group>"; };
 		F1CE2394215A838E00077508 /* watch_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_design.png; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				A2B9C424215A523D0065D69A /* Info.plist */,
 				A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */,
 				A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */,
+				A2B9C43E215BADCB0065D69A /* DetailInterfaceController.swift */,
 			);
 			path = "WatchTest WatchKit Extension";
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B9C43F215BADCB0065D69A /* DetailInterfaceController.swift in Sources */,
 				A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */,
 				A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */,
 				A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */,
