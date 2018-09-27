@@ -14,13 +14,14 @@ var watchSession = WCSession.default
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet var tableRemedies: WKInterfaceTable!
+    @IBOutlet var noRemediesTodayLabel: WKInterfaceLabel!
     var remedies: [Remedy] = []
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         watchSession.delegate = self
         watchSession.activate()
-        watchSession.sendMessage(["getRemediesForToday" : ""], replyHandler: { (response: [String:Any]) in
+        watchSession.sendMessage(["getRemediesForToday" : "", "updateRemedy": remedies], replyHandler: { (response: [String:Any]) in
             self.remedies = response["remedies"] as! [Remedy]
         }) { (e) in
             let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
@@ -40,7 +41,7 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        //self.tableRemedies.setNumberOfRows(remedies.count, withRowType: "TableRemedy")
+        
         self.remedies = (self.remedies.filter { (remedy: Remedy) -> Bool in
             return !remedy.taken
         }).sorted(by: { (r1, r2) -> Bool in
@@ -53,6 +54,7 @@ class InterfaceController: WKInterfaceController {
                 return (r1Components.hour ?? 0) < (r2Components.hour ?? 0)
             }
         })
+        noRemediesTodayLabel.setText(remedies.count <= 0 ? "No remedies to take!" : "")
         
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "hh:mm"

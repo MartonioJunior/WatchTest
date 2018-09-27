@@ -41,18 +41,20 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <label alignment="center" text="Label" textAlignment="center" id="uBJ-rI-MMI"/>
                     </items>
                     <connections>
+                        <outlet property="noRemediesTodayLabel" destination="uBJ-rI-MMI" id="YRo-3w-waV"/>
                         <outlet property="tableRemedies" destination="fow-r9-Oec" id="jHU-jw-Plg"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
-        <!--Detail-->
+        <!--Today-->
         <scene sceneID="g8p-pz-rat">
             <objects>
-                <controller identifier="Detail" id="8BP-Rz-R5S" customClass="DetailInterfaceController" customModule="WatchTest_WatchKit_Extension">
+                <controller identifier="Detail" title="Today" id="8BP-Rz-R5S" customClass="DetailInterfaceController" customModule="WatchTest_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Tylenol" textAlignment="center" id="bP8-Eq-bIR">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,7 +107,14 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="WatchTest_WatchKit_App" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="WatchTest_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="Label" id="krx-75-DvU"/>
+                    </items>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="krx-75-DvU" id="SHB-XY-fLI"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>
