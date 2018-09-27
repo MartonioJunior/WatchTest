@@ -41,7 +41,10 @@ class InitialTableViewController: UITableViewController {
         tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
         
         let remedies = CoreDataManager.sharedManager.fetchRemedies()
-        print(remedies)
+
+        for remedy in remedies! {
+            print(remedy.name)
+        }
     }
 
     @IBAction func addRemedyButtomPressed(_ sender: Any) {
