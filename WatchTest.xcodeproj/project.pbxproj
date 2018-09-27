@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A22D53EE215CF429004F10CD /* DetailInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22D53ED215CF429004F10CD /* DetailInterfaceController.swift */; };
 		A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C3EE215A523A0065D69A /* AppDelegate.swift */; };
 		A2B9C3F4215A523A0065D69A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C3F2215A523A0065D69A /* Main.storyboard */; };
 		A2B9C3F6215A523C0065D69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C3F5215A523C0065D69A /* Assets.xcassets */; };
@@ -86,6 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A22D53ED215CF429004F10CD /* DetailInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInterfaceController.swift; sourceTree = "<group>"; };
 		A2B9C3EB215A523A0065D69A /* WatchTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2B9C3EE215A523A0065D69A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2B9C3F3215A523A0065D69A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -210,13 +212,13 @@
 			isa = PBXGroup;
 			children = (
 				A2B9C41C215A523D0065D69A /* InterfaceController.swift */,
+				A22D53ED215CF429004F10CD /* DetailInterfaceController.swift */,
 				A2B9C41E215A523D0065D69A /* ExtensionDelegate.swift */,
 				A2B9C420215A523D0065D69A /* NotificationController.swift */,
 				A2B9C422215A523D0065D69A /* Assets.xcassets */,
 				A2B9C424215A523D0065D69A /* Info.plist */,
 				A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */,
 				A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */,
-				A2B9C43E215BADCB0065D69A /* DetailInterfaceController.swift */,
 			);
 			path = "WatchTest WatchKit Extension";
 			sourceTree = "<group>";
@@ -448,7 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2B9C43F215BADCB0065D69A /* DetailInterfaceController.swift in Sources */,
+				A22D53EE215CF429004F10CD /* DetailInterfaceController.swift in Sources */,
 				A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */,
 				A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */,
 				A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */,

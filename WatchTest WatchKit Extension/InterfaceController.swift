@@ -32,7 +32,9 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        presentController(withName: "Detail", context: remedies[rowIndex])
+        DispatchQueue.main.async {
+            self.pushController(withName: "Detail", context: self.remedies[rowIndex])
+        }
     }
     
     override func willActivate() {

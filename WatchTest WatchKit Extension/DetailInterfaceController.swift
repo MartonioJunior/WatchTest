@@ -47,10 +47,10 @@ class DetailInterfaceController: WKInterfaceController {
     
     func updateAndReturn() {
         watchSession.sendMessage(["updateRemedy": remedy], replyHandler: { (response: [String:Any]) in
-            self.dismiss()
+            self.pop()
         }) { (error) in
             let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
-                self.dismiss()
+                self.pop()
             })
             self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
         }
