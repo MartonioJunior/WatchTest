@@ -10,7 +10,7 @@ import UIKit
 
 class RemedyInfoViewController: UIViewController {
 
-    var selectedRemedy: Remedy?
+    var selectedRemedy: CDRemedy?
     
     @IBOutlet weak var remedyNameLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
@@ -24,7 +24,7 @@ class RemedyInfoViewController: UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM -> HH:mm"
             remedyNameLabel.text = remedy.name
-            startDateLabel.text = dateFormatter.string(from: remedy.startDate)
+            startDateLabel.text = dateFormatter.string(from: remedy.startDate!)
             intervalLabel.text = "\(remedy.interval)h"
             remedyDescriptionTextView.text = remedy.remedyDescription
         } else {
