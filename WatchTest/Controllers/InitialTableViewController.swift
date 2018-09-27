@@ -39,12 +39,7 @@ class InitialTableViewController: UITableViewController {
         let nibReusable = UINib(nibName: "ReusableView", bundle: nil)
         tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
         
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let remedies = CoreDataManager.sharedManager.fetchRemedies()
     }
 
     @IBAction func addRemedyButtomPressed(_ sender: Any) {

@@ -12,6 +12,10 @@ import UIKit
 
 class CoreDataManager {
     
+    static let sharedManager = CoreDataManager()
+    
+    private init() {}
+    
     func initializeContainer (entity: String) -> NSManagedObject? {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -43,4 +47,20 @@ class CoreDataManager {
         }
     }
     
+    func fetchRemedies () -> [CDRemedy]? {
+        let remedy = initializeContainer(entity: "CDRemedy")
+        let request = NSFetchRequest<CDRemedy>(entityName: "CDRemedy")
+        request.returnsObjectsAsFaults = false
+        do {
+            let remedies = try remedy?.managedObjectContext?.fetch(request)
+            return remedies as! [CDRemedy]
+        } catch let error as NSError {
+            print ("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return nil
+    }
+    
+    func deleteRemedy () {
+        
+    }
 }

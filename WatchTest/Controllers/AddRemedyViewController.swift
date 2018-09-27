@@ -59,7 +59,13 @@ class AddRemedyViewController: UIViewController {
         datePicker.backgroundColor = .white
         startDate.inputView = datePicker
         startDate.inputAccessoryView = accessoryToolbar
-//        Resin
+        
+//        Border in TextView
+        remedyDescription.layer.borderColor = UIColor.lightGray.cgColor
+        remedyDescription.layer.borderWidth = 0.5
+        remedyDescription.layer.cornerRadius = 15
+        
+//        Resizing View.
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
       }
@@ -68,6 +74,14 @@ class AddRemedyViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func addNewRemedy(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        let newDate = dateFormatter.date(from: startDate.text!)
+        CoreDataManager.sharedManager.addRemedy(name: remedyName.text!, remedyDescription: remedyDescription.text, startDate: newDate!, interval: Int64(interval.text!)!)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func onDoneButtonTapped(sender: UIBarButtonItem) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -81,21 +95,26 @@ class AddRemedyViewController: UIViewController {
     }
     
     @objc func keyboardWillShow (notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
+        print(remedyDescription.isFirstResponder)
+        if remedyDescription.isFirstResponder {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= keyboardSize.height
+                }
             }
         }
     }
     
     @objc func keyboardWillHide (notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
+        if remedyDescription.isFirstResponder {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y != 0{
+                    print(keyboardSize)
+                    self.view.frame.origin.y = 0
+                }
             }
         }
     }
-    
 }
 
 
