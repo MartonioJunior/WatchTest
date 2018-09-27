@@ -78,7 +78,7 @@ class AddRemedyViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let newDate = dateFormatter.date(from: startDate.text!)
-        CoreDataManager.sharedManager.addRemedy(name: remedyName.text!, remedyDescription: remedyDescription.text, startDate: newDate!, interval: Int64(interval.text!)!)
+        CoreDataManager.sharedManager.saveRemedy(name: remedyName.text!, remedyDescription: remedyDescription.text, startDate: newDate!, interval: Int64(interval.text!)!)
         self.navigationController?.popViewController(animated: true)
     }
     
