@@ -53,7 +53,7 @@ class CoreDataManager {
         request.returnsObjectsAsFaults = false
         do {
             let remedies = try remedy?.managedObjectContext?.fetch(request)
-            return remedies as! [CDRemedy]
+            return remedies
         } catch let error as NSError {
             print ("Could not fetch. \(error), \(error.userInfo)")
         }

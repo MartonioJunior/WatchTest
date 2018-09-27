@@ -41,6 +41,7 @@ class InitialTableViewController: UITableViewController {
         tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
         
         let remedies = CoreDataManager.sharedManager.fetchRemedies()
+        print(remedies)
     }
 
     @IBAction func addRemedyButtomPressed(_ sender: Any) {
@@ -98,7 +99,9 @@ class InitialTableViewController: UITableViewController {
     
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "Info", sender: remedies[indexPath.section][indexPath.row])
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "Info", sender: remedies[indexPath.section][indexPath.row])
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -115,18 +118,29 @@ class InitialTableViewController: UITableViewController {
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        if indexPath.section == 0 {
+            return true
+        } else {
+            return false
+        }
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: "Deletar") { (action, indexPath) in
             self.remedies[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        let take = UITableViewRowAction(style: .default, title: "take") { action, indexPath in
-//            let session = WCSessio
+        let delay = UITableViewRowAction(style: .default, title: "Adiar") { action, indexPath in
+            //let session = WCSession
         }
-        return indexPath.section == 0 ? [delete, take] : []
+        delay.backgroundColor = UIColor(red: 95/255, green: 214/255, blue: 85/255, alpha: 1)
+        
+        let take = UITableViewRowAction(style: .default, title: "Tomar") { action, indexPath in
+            //let session = WCSession
+        }
+        take.backgroundColor = UIColor(red: 253/255, green: 164/255, blue: 97/255, alpha: 1)
+        
+        return indexPath.section == 0 ? [delete, delay, take] : []
     }
 
     /*
@@ -153,9 +167,7 @@ class InitialTableViewController: UITableViewController {
         if segue.identifier == "Info" {
             let viewController = segue.destination as! RemedyInfoViewController
             let selectedRemedy = sender as! Remedy
-            if selectedRemedy != nil {
-                viewController.selectedRemedy = selectedRemedy
-            }
+            viewController.selectedRemedy = selectedRemedy
         }
     }
 
