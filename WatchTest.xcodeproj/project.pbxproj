@@ -32,6 +32,7 @@
 		BE5EB2A0215BAF91002D45D9 /* ReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5EB29F215BAF91002D45D9 /* ReusableView.xib */; };
 		BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */; };
 		BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */; };
+		BEDA995F215CF93300A34B36 /* RemedyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */; };
 		F1CE2390215A831100077508 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F1CE238F215A831100077508 /* README.md */; };
 		F1CE2393215A836200077508 /* iphone_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2392215A836200077508 /* iphone_design.png */; };
 		F1CE2395215A838E00077508 /* watch_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2394215A838E00077508 /* watch_design.png */; };
@@ -118,6 +119,7 @@
 		BE5EB29F215BAF91002D45D9 /* ReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableView.xib; sourceTree = "<group>"; };
 		BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemedyViewController.swift; sourceTree = "<group>"; };
+		BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyInfoViewController.swift; sourceTree = "<group>"; };
 		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F1CE2392215A836200077508 /* iphone_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_design.png; sourceTree = "<group>"; };
 		F1CE2394215A838E00077508 /* watch_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_design.png; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				BE5EB292215BAC42002D45D9 /* InitialTableViewController.swift */,
 				BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */,
+				BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				BE5EB29E215BAF87002D45D9 /* ReusableView.swift in Sources */,
 				A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */,
 				BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */,
+				BEDA995F215CF93300A34B36 /* RemedyInfoViewController.swift in Sources */,
 				BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */,
 				BE5EB299215BAD5E002D45D9 /* RemedyTableViewCell.swift in Sources */,
 			);

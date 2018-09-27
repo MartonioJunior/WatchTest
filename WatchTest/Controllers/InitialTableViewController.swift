@@ -102,7 +102,7 @@ class InitialTableViewController: UITableViewController {
     
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "", sender: remedies[indexPath.section][indexPath.row])
+        performSegue(withIdentifier: "Info", sender: remedies[indexPath.section][indexPath.row])
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -147,14 +147,19 @@ class InitialTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "Info" {
+            let viewController = segue.destination as! RemedyInfoViewController
+            let selectedRemedy = sender as! Remedy
+            if selectedRemedy != nil {
+                viewController.selectedRemedy = selectedRemedy
+            }
+        }
     }
-    */
 
 }
