@@ -84,4 +84,18 @@ extension InterfaceController: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         print("Watch received: \(applicationContext)")
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let action = message.keys.first {
+            if action.elementsEqual("didTakeRemedio") {
+                guard let remedy = message[action] as? Remedy else {return}
+                didTake(remedy: remedy)
+            }
+        }
+    }
+    
+    func didTake(remedy : Remedy){
+        print("remedio foi todamo \(remedy.name)")
+    }
 }
+

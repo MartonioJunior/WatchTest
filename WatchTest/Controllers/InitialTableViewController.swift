@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 class InitialTableViewController: UITableViewController {
 
@@ -127,7 +128,10 @@ class InitialTableViewController: UITableViewController {
             self.remedies[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        return indexPath.section == 0 ? [delete] : []
+        let take = UITableViewRowAction(style: .default, title: "take") { action, indexPath in
+//            let session = WCSessio
+        }
+        return indexPath.section == 0 ? [delete, take] : []
     }
 
     /*
