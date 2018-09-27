@@ -35,18 +35,21 @@ class DetailInterfaceController: WKInterfaceController {
     }
     
     @IBAction func delayRemedy() {
-        guard let remedyDate = remedy?.startDate else { return }
-        remedy?.startDate = remedyDate.addingTimeInterval(600)
-        updateAndReturn()
+        guard let remedyDate = remedy?.startDate, let tempRemedy = self.remedy?.copy() as? Remedy else { return }
+        tempRemedy.startDate = remedyDate.addingTimeInterval(600)
+        updateAndReturn(changedRemedy: tempRemedy)
     }
     
     @IBAction func takeRemedy() {
-        remedy?.taken = true
-        updateAndReturn()
+        guard let tempRemedy = self.remedy?.copy() as? Remedy else { return }
+        tempRemedy.taken = true
+        updateAndReturn(changedRemedy: tempRemedy)
     }
     
-    func updateAndReturn() {
-        watchSession.sendMessage(["updateRemedy": remedy], replyHandler: { (response: [String:Any]) in
+    func updateAndReturn(changedRemedy: Remedy) {
+        watchSession.sendMessage(["updateRemedy": [changedRemedy]], replyHandler: { (response: [String:Any]) in
+            self.remedy?.startDate = changedRemedy.startDate
+            self.remedy?.taken = changedRemedy.taken
             self.pop()
         }) { (error) in
             let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
