@@ -24,4 +24,5 @@ class Remedy : Codable {
         self.remedyDescription = description
         self.taken = taken
     }
+ 
 }

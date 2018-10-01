@@ -12,11 +12,13 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet var tableRemedies: WKInterfaceTable!
+    @IBOutlet var noRemediesTodayLabel: WKInterfaceLabel!
     var remedies: [Remedy] = []
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if WCSession.isSupported() {
+        
+      if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
             session.activate()
@@ -71,6 +73,7 @@ class InterfaceController: WKInterfaceController {
                 return (r1Components.hour ?? 0) < (r2Components.hour ?? 0)
             }
         })
+        noRemediesTodayLabel.setText(remedies.count <= 0 ? "No remedies to take!" : "")
         
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "hh:mm"
