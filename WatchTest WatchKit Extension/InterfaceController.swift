@@ -10,25 +10,33 @@ import WatchKit
 import WatchConnectivity
 import Foundation
 
-var watchSession = WCSession.default
-
 class InterfaceController: WKInterfaceController {
     @IBOutlet var tableRemedies: WKInterfaceTable!
     var remedies: [Remedy] = []
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        watchSession.delegate = self
-        watchSession.activate()
-        watchSession.sendMessage(["getRemediesForToday" : ""], replyHandler: { (response: [String:Any]) in
-            self.remedies = response["remedies"] as! [Remedy]
-        }) { (e) in
-            let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
-                self.dismiss()
-            })
-            self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
-            self.remedies.append(Remedy(name: "Luftal", interval: 60, description: "Para dor de barriga", startDate: Date(), taken: false))
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+            
+            let msg = MessageWatch(eventType : .getAll , remedy : nil )
+            guard let data = try? JSONEncoder().encode(msg) else {return}
+            print("get all")
+            session.sendMessageData(data, replyHandler: { (dataResult) in
+                guard let list = try? JSONDecoder().decode([Remedy].self, from: dataResult) else {return}
+                self.remedies = list
+                self.setRemediesTable()
+                print("get all 2 ")
+            }) { error in
+                let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
+                    self.dismiss()
+                })
+                self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
+            }
         }
+    
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
@@ -40,7 +48,17 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        //WCSession.default.activate()
         //self.tableRemedies.setNumberOfRows(remedies.count, withRowType: "TableRemedy")
+        setRemediesTable()
+    }
+    
+    override func didDeactivate() {
+        // This method is called when watch view controller is no longer visible
+        super.didDeactivate()
+    }
+    
+    func setRemediesTable() {
         self.remedies = (self.remedies.filter { (remedy: Remedy) -> Bool in
             return !remedy.taken
         }).sorted(by: { (r1, r2) -> Bool in
@@ -68,34 +86,42 @@ class InterfaceController: WKInterfaceController {
             controller.timeLabel.setText(time)
         }
     }
-    
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
-    }
 
 }
 
 extension InterfaceController: WCSessionDelegate {
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        print(session)
+    }
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+
         print("Session activation complete")
     }
     
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         print("Watch received: \(applicationContext)")
     }
+ 
     
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if let action = message.keys.first {
-            if action.elementsEqual("didTakeRemedio") {
-                guard let remedy = message[action] as? Remedy else {return}
-                didTake(remedy: remedy)
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        DispatchQueue.main.async {
+            guard let msg = try? JSONDecoder().decode(MessageWatch.self, from: messageData) else{return}
+            switch msg.eventType {
+            case .new :
+                print("new")
+            case .delay:
+                print("delay")
+            case .getAll:
+                print("getAll")
+            case .taken:
+                print("taken")
             }
         }
     }
     
+    
     func didTake(remedy : Remedy){
-        print("remedio foi todamo \(remedy.name)")
+        
     }
 }
 

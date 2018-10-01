@@ -8,14 +8,22 @@
 
 import UIKit
 import WatchKit
+import WatchConnectivity
 
 class DetailInterfaceController: WKInterfaceController {
     var remedy: Remedy?
+    var watchSession : WCSession!
     @IBOutlet var titleLabel: WKInterfaceLabel!
     @IBOutlet var descriptionLabel: WKInterfaceLabel!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        if WCSession.isSupported() {
+            watchSession = WCSession.default
+            watchSession.delegate = self
+            watchSession.activate()
+        }
+        
         guard let medicine = context as? Remedy else {
             return
         }
@@ -35,18 +43,21 @@ class DetailInterfaceController: WKInterfaceController {
     }
     
     @IBAction func delayRemedy() {
-        guard let remedyDate = remedy?.startDate else { return }
-        remedy?.startDate = remedyDate.addingTimeInterval(600)
-        updateAndReturn()
+        let msg = MessageWatch(eventType: .delay, remedy: remedy)
+        updateAndReturn(msg: msg)
     }
     
     @IBAction func takeRemedy() {
-        remedy?.taken = true
-        updateAndReturn()
+        let msg = MessageWatch(eventType: .taken, remedy: remedy)
+        updateAndReturn(msg: msg)
     }
     
-    func updateAndReturn() {
-        watchSession.sendMessage(["updateRemedy": remedy], replyHandler: { (response: [String:Any]) in
+    func updateAndReturn(msg: MessageWatch) {
+        guard let data = try? JSONEncoder().encode(msg) else {return}
+        watchSession.sendMessageData(data, replyHandler: { resultData in
+            guard let msg = try? JSONDecoder().decode(Remedy.self, from: resultData) else {return}
+            self.remedy?.startDate = msg.startDate
+            self.remedy?.taken = msg.taken
             self.pop()
         }) { (error) in
             let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
@@ -55,4 +66,12 @@ class DetailInterfaceController: WKInterfaceController {
             self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
         }
     }
+}
+
+
+// MARK: - <#WCSessionDelegate#>
+extension DetailInterfaceController : WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }    
 }
