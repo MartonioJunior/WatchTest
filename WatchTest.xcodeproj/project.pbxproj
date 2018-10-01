@@ -32,6 +32,8 @@
 		BE5EB2A0215BAF91002D45D9 /* ReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5EB29F215BAF91002D45D9 /* ReusableView.xib */; };
 		BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */; };
 		BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */; };
+		F18B8C3421623AA900F926A0 /* MessageWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18B8C3321623AA900F926A0 /* MessageWatch.swift */; };
+		F18B8C3521623DA600F926A0 /* MessageWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18B8C3321623AA900F926A0 /* MessageWatch.swift */; };
 		BEDA995F215CF93300A34B36 /* RemedyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */; };
 		F1CE2390215A831100077508 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F1CE238F215A831100077508 /* README.md */; };
 		F1CE2393215A836200077508 /* iphone_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2392215A836200077508 /* iphone_design.png */; };
@@ -119,6 +121,7 @@
 		BE5EB29F215BAF91002D45D9 /* ReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableView.xib; sourceTree = "<group>"; };
 		BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemedyViewController.swift; sourceTree = "<group>"; };
+		F18B8C3321623AA900F926A0 /* MessageWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageWatch.swift; sourceTree = "<group>"; };
 		BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyInfoViewController.swift; sourceTree = "<group>"; };
 		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F1CE2392215A836200077508 /* iphone_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_design.png; sourceTree = "<group>"; };
@@ -250,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				A2B9C43B215A823C0065D69A /* Remedio.swift */,
+				F18B8C3321623AA900F926A0 /* MessageWatch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -432,6 +436,7 @@
 			files = (
 				BE5EB293215BAC42002D45D9 /* InitialTableViewController.swift in Sources */,
 				A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */,
+				F18B8C3421623AA900F926A0 /* MessageWatch.swift in Sources */,
 				A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */,
 				BE5EB29E215BAF87002D45D9 /* ReusableView.swift in Sources */,
 				A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */,
@@ -455,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A22D53EE215CF429004F10CD /* DetailInterfaceController.swift in Sources */,
+				F18B8C3521623DA600F926A0 /* MessageWatch.swift in Sources */,
 				A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */,
 				A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */,
 				A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */,
@@ -630,13 +636,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				INFOPLIST_FILE = "WatchTest WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.bepid.WatchTest.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramires.bepid.WatchTest.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -651,13 +658,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				INFOPLIST_FILE = "WatchTest WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.bepid.WatchTest.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramires.bepid.WatchTest.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -673,9 +681,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				IBSC_MODULE = WatchTest_WatchKit_Extension;
 				INFOPLIST_FILE = "WatchTest WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.bepid.WatchTest.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramires.bepid.WatchTest.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -691,9 +700,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				IBSC_MODULE = WatchTest_WatchKit_Extension;
 				INFOPLIST_FILE = "WatchTest WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.bepid.WatchTest.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramires.bepid.WatchTest.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -708,13 +718,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				INFOPLIST_FILE = WatchTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.bepid.WatchTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramires.bepid.WatchTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -726,13 +736,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				INFOPLIST_FILE = WatchTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.academy.bepid.WatchTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ramires.bepid.WatchTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -745,6 +755,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				INFOPLIST_FILE = WatchTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -765,6 +776,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 69TTHNQU35;
 				INFOPLIST_FILE = WatchTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -10,12 +10,17 @@ import UIKit
 import WatchConnectivity
 
 class InitialTableViewController: UITableViewController {
-
 //    var remedies = [[Remedy](),[Remedy]()]
     var remedies:[CDRemedy]?
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,6 +28,9 @@ class InitialTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        
+        
         
         let nibRemedyCell = UINib(nibName: "RemedyTableViewCell", bundle: nil)
         tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
@@ -132,11 +140,24 @@ class InitialTableViewController: UITableViewController {
         let delay = UITableViewRowAction(style: .default, title: "Adiar") { action, indexPath in
             //let session = WCSession
         }
+
+        let take = UITableViewRowAction(style: .default, title: "take") { action, indexPath in
+            let remedy = self.remedies[indexPath.section][indexPath.item]
+            let encoder = JSONEncoder()
+            let msg = MessageWatch(eventType: .taken, remedy: remedy)
+            guard let data = try? encoder.encode(msg) else {return}
+            let session = WCSession.default
+            if session.isReachable {
+                session.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+            }else{
+                let ok  = UIAlertAction(title: "ok", style: .default, handler: nil)
+                let controller = UIAlertController(title: "alert", message: "nao mandou a mensage", preferredStyle: .alert)
+                controller.addAction(ok)
+                self.present(controller, animated: true, completion: nil)
+            }
+          }
+            
         delay.backgroundColor = UIColor(red: 95/255, green: 214/255, blue: 85/255, alpha: 1)
-        
-        let take = UITableViewRowAction(style: .default, title: "Tomar") { action, indexPath in
-            //let session = WCSession
-        }
         take.backgroundColor = UIColor(red: 253/255, green: 164/255, blue: 97/255, alpha: 1)
         
         return indexPath.section == 0 ? [delete, delay, take] : []
@@ -170,4 +191,69 @@ class InitialTableViewController: UITableViewController {
         }
     }
 
+}
+
+
+extension InitialTableViewController : WCSessionDelegate {
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("foi ativado")
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("se tornou inativo")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("vai desativar")
+    }
+    
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data, replyHandler: @escaping (Data) -> Void) {
+        DispatchQueue.main.async {
+            guard let msg = try? JSONDecoder().decode(MessageWatch.self, from: messageData) else{return}
+            switch msg.eventType {
+            case .new :
+                self.newRemedy(msg: msg, replyHandler: replyHandler)
+            case .delay:
+                self.delay(msg: msg, replyHandler: replyHandler)
+            case .getAll:
+                self.getAll(msg: msg, replyHandler: replyHandler)
+            case .taken:
+                self.didTaken(msg: msg, replyHandler: replyHandler)
+            }
+        }
+    }
+    
+    
+    func newRemedy(msg : MessageWatch , replyHandler : @escaping (Data) -> Void){
+        
+    }
+    
+    func delay(msg : MessageWatch , replyHandler : @escaping (Data) -> Void){
+        print("delay")
+        guard let remedy = self.remedies.first?.first(where: { remedy in
+            return msg.remedy?.id == remedy.id
+        }) else { return }
+        remedy.startDate = remedy.startDate.addingTimeInterval(600)
+        guard let data = try? JSONEncoder().encode(remedy) else {return}
+        replyHandler(data)
+    }
+    
+    func getAll(msg : MessageWatch , replyHandler : @escaping (Data) -> Void){
+        print("sent all")
+        guard let data = try? JSONEncoder().encode(self.remedies[0]+self.remedies[1]) else {return}
+        replyHandler(data)
+    }
+    
+    func didTaken(msg : MessageWatch , replyHandler : @escaping (Data) -> Void)  {
+        print("taken")
+        guard let remedy = self.remedies.first?.first(where: { remedy in
+            return msg.remedy?.id == remedy.id
+        }) else { return }
+        remedy.taken = true
+        self.tableView.reloadData()
+        guard let data = try? JSONEncoder().encode(remedy) else {return}
+        replyHandler(data)
+    }
+    
 }
