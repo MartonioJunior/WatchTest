@@ -142,7 +142,7 @@ class InitialTableViewController: UITableViewController {
         }
 
         let take = UITableViewRowAction(style: .default, title: "take") { action, indexPath in
-            let remedy = self.remedies[indexPath.section][indexPath.item]
+            let remedy =  Remedy(withCDRemedy: self.remedies![indexPath.item])
             let encoder = JSONEncoder()
             let msg = MessageWatch(eventType: .taken, remedy: remedy)
             guard let data = try? encoder.encode(msg) else {return}
@@ -231,25 +231,29 @@ extension InitialTableViewController : WCSessionDelegate {
     
     func delay(msg : MessageWatch , replyHandler : @escaping (Data) -> Void){
         print("delay")
-        guard let remedy = self.remedies.first?.first(where: { remedy in
+        guard let cdRemedy = self.remedies?.first(where: { remedy in
             return msg.remedy?.id == remedy.id
         }) else { return }
+        let remedy = Remedy(withCDRemedy: cdRemedy)
         remedy.startDate = remedy.startDate.addingTimeInterval(600)
         guard let data = try? JSONEncoder().encode(remedy) else {return}
         replyHandler(data)
     }
     
     func getAll(msg : MessageWatch , replyHandler : @escaping (Data) -> Void){
-        print("sent all")
-        guard let data = try? JSONEncoder().encode(self.remedies[0]+self.remedies[1]) else {return}
+        let remedyList = self.remedies?.map({ cdRemedy -> Remedy in
+            return Remedy(withCDRemedy: cdRemedy)
+        })
+        guard let data = try? JSONEncoder().encode(remedyList) else {return}
         replyHandler(data)
     }
     
     func didTaken(msg : MessageWatch , replyHandler : @escaping (Data) -> Void)  {
         print("taken")
-        guard let remedy = self.remedies.first?.first(where: { remedy in
+        guard let cdRemedy = self.remedies?.first(where: { remedy in
             return msg.remedy?.id == remedy.id
         }) else { return }
+        let remedy = Remedy(withCDRemedy: cdRemedy)
         remedy.taken = true
         self.tableView.reloadData()
         guard let data = try? JSONEncoder().encode(remedy) else {return}
@@ -257,3 +261,4 @@ extension InitialTableViewController : WCSessionDelegate {
     }
     
 }
+

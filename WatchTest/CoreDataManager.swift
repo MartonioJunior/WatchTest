@@ -42,6 +42,7 @@ class CoreDataManager {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         let entity =  NSEntityDescription.entity(forEntityName: "CDRemedy", in: managedContext)
         let remedy = NSManagedObject(entity: entity!, insertInto: managedContext)
+        remedy.setValue(UUID(), forKey: "id")
         remedy.setValue(name, forKeyPath: "name")
         remedy.setValue(remedyDescription, forKey: "remedyDescription")
         remedy.setValue(startDate, forKey: "startDate")

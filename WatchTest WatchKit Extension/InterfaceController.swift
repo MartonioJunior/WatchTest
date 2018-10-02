@@ -14,8 +14,6 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var tableRemedies: WKInterfaceTable!
     @IBOutlet var noRemediesTodayLabel: WKInterfaceLabel!
     var remedies: [Remedy] = []
-    var timer: Timer = Timer()
-    var loadingFrame = 0
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -32,26 +30,13 @@ class InterfaceController: WKInterfaceController {
                 guard let list = try? JSONDecoder().decode([Remedy].self, from: dataResult) else {return}
                 self.remedies = list
                 self.setRemediesTable()
-                print("get all 2 ")
             }) { error in
                 let wkAction = WKAlertAction(title: "OK", style: .default, handler: {
                     self.dismiss()
                 })
                 self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
             }
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-                self.updateLoadingLabel()
-            })
         }
-    }
-    
-    func updateLoadingLabel() {
-        var string = "Loading"
-        for _ in 0..<loadingFrame {
-            string += "."
-        }
-        noRemediesTodayLabel.setText(string)
-        loadingFrame = (loadingFrame+1)%4
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
@@ -90,21 +75,38 @@ class InterfaceController: WKInterfaceController {
         self.timer.invalidate()
         noRemediesTodayLabel.setText(self.remedies.count <= 0 ? "No remedies to take!" : "")
         
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "hh:mm"
-        
-        tableRemedies.setNumberOfRows(remedies.count, withRowType: "TableRemedy")
-        
-        for index in 0..<self.tableRemedies.numberOfRows {
-            guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { continue }
-            let remedy = remedies[index]
-            controller.remedy = remedy
-            controller.nomeLabel.setText(remedy.name)
-            let time = dateFormat.string(from: remedy.startDate)
-            controller.timeLabel.setText(time)
+        tableRemedies.setNumberOfRows(self.remedies.count, withRowType: "TableRemedy")
+        for index in 0..<self.remedies.count {
+            updateRemedyOnTable(row: index)
         }
     }
-
+    
+    func addRemedyToTable(remedy: Remedy){
+        noRemediesTodayLabel.setText("")
+        let index = tableRemedies.numberOfRows
+        tableRemedies.insertRows(at: IndexSet(integer: tableRemedies.numberOfRows), withRowType: "TableRemedy")
+        guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { return }
+        setTableRow(controller: controller, withRemedy: remedy)
+    }
+    
+    func updateRemedyOnTable(row: Int) {
+        guard let controller = tableRemedies.rowController(at: row) as? RemedyRowController else { return }
+        let remedy = self.remedies[row]
+        setTableRow(controller: controller, withRemedy: remedy)
+    }
+    
+    func removeRemedyOnTable(row: Int) {
+        self.tableRemedies.removeRows(at: IndexSet(integer: row))
+    }
+    
+    func setTableRow(controller: RemedyRowController, withRemedy remedy: Remedy) {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "hh:mm"
+        controller.remedy = remedy
+        controller.nomeLabel.setText(remedy.name)
+        let time = dateFormat.string(from: remedy.startDate)
+        controller.timeLabel.setText(time)
+    }
 }
 
 extension InterfaceController: WCSessionDelegate {
@@ -126,9 +128,9 @@ extension InterfaceController: WCSessionDelegate {
             guard let msg = try? JSONDecoder().decode(MessageWatch.self, from: messageData) else{return}
             switch msg.eventType {
             case .new :
-                print("new")
+                self.didAdd(remedy: msg.remedy!)
             case .delay:
-                print("delay")
+                self.didDelay(remedy: msg.remedy!)
             case .getAll:
                 print("getAll")
             case .taken:
@@ -137,9 +139,25 @@ extension InterfaceController: WCSessionDelegate {
         }
     }
     
+    func didAdd(remedy: Remedy){
+        remedies.append(remedy)
+        addRemedyToTable(remedy: remedy)
+    }
     
-    func didTake(remedy : Remedy){
-        
+    func didDelay(remedy: Remedy) {
+        guard let index = remedies.index(where:{ (remedyItem) -> Bool in
+            return remedy.id == remedyItem.id
+        }) else {return}
+        self.remedies[index].startDate.addTimeInterval(600)
+        updateRemedyOnTable(row: index)
+    }
+    
+    func didTaken(remedy: Remedy) {
+        guard let index = remedies.index(where:{ (remedyItem) -> Bool in
+            return remedy.id == remedyItem.id
+        }) else {return}
+        self.remedies.remove(at: index)
+        removeRemedyOnTable(row: index)
     }
 }
 
