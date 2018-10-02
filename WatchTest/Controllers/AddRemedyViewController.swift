@@ -126,7 +126,6 @@ class AddRemedyViewController: UIViewController  {
             guard let data = try? JSONEncoder().encode(msg) else {return}
             WCSession.default.sendMessageData(data, replyHandler: nil, errorHandler: nil)
         }
-        CoreDataManager.sharedManager.saveRemedy(name: remedyName.text!, remedyDescription: remedyDescription.text, startDate: newDate!, interval: Int64(interval.text!)!)
         
         let frequency = 24/(Int64(interval.text!)!)
         print(frequency)
