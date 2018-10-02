@@ -24,11 +24,6 @@ class InitialTableViewController: UITableViewController {
             session.delegate = self
             session.activate()
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
 
@@ -52,10 +47,10 @@ class InitialTableViewController: UITableViewController {
     func configureLocalNotificationCenter() {
         localNotificationCenter.delegate = self
         
-        let takeRemedy = UNNotificationAction(identifier: "takeRemedy", title: "Tomar Remedio", options: [.foreground])
-        let delayRemedy = UNNotificationAction(identifier: "delayRemedy", title: "Adiar Remedio", options: [.foreground])
+        let takeRemedyAction = UNNotificationAction(identifier: "takeRemedy", title: "Tomar Remedio", options: [.foreground])
+        let delayRemedyAction = UNNotificationAction(identifier: "delayRemedy", title: "Adiar Remedio", options: [.foreground])
         
-        let remedyScheduleCategory = UNNotificationCategory.init(identifier: "remedyScheduleCategory", actions: [takeRemedy,delayRemedy], intentIdentifiers: [], options: [])
+        let remedyScheduleCategory = UNNotificationCategory.init(identifier: "remedyScheduleCategory", actions: [takeRemedyAction,delayRemedyAction], intentIdentifiers: [], options: [])
         
         UNUserNotificationCenter.current().setNotificationCategories([remedyScheduleCategory])
     }
@@ -257,7 +252,7 @@ extension InitialTableViewController: UNUserNotificationCenterDelegate {
         default:
             print("wtf")
         }
-        print(completionHandler)
+        print("response: \(response.notification.request.identifier.split(separator: "-"))")
     }
 }
 
@@ -333,9 +328,7 @@ extension InitialTableViewController: RemedyInfoViewControllerDelegate {
     }
     
     func delayRemedyButtonPressed(forRemedy: CDRemedy) {
-        
         delayRemedy()
-        
         print("Delay")
     }
 }

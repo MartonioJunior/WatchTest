@@ -84,7 +84,7 @@ class AddRemedyViewController: UIViewController  {
             let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
             let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
             
-            let identifier = "\(remedyName) - \(times) - \(Date.init(timeIntervalSinceNow: 0))"
+            let identifier = "\(remedyName)-\(times)-\(Date.init(timeIntervalSinceNow: 0))"
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
             localNotificationCenter?.add(request, withCompletionHandler: { (error) in
                 if let error = error {
