@@ -78,6 +78,7 @@ class AddRemedyViewController: UIViewController  {
             content.title = remedyName
             content.body = remedyDescription
             content.sound = UNNotificationSound.default()
+            content.categoryIdentifier = "remedyScheduleCategory"
             
             //        Trigger para a notificação, baseado na data.
             let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
@@ -131,8 +132,6 @@ class AddRemedyViewController: UIViewController  {
         print(frequency)
         
         createNewNotification(initialDate: newDate!, remedyFrequency: Double(frequency), remedyName: remedyName.text!, remedyDescription: remedyDescription.text)
-        
-        
         
         self.navigationController?.popViewController(animated: true)
     }

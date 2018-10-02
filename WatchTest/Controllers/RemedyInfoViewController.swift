@@ -12,6 +12,8 @@ class RemedyInfoViewController: UIViewController {
 
     var selectedRemedy: CDRemedy?
     
+    var delegate: RemedyInfoViewControllerDelegate?
+    
     @IBOutlet weak var remedyNameLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var intervalLabel: UILabel!
@@ -50,12 +52,12 @@ class RemedyInfoViewController: UIViewController {
     }
     
     @IBAction func takeRemedyButtonPressed(_ sender: Any) {
-        
+        delegate?.takeRemedyButtonPressed(forRemedy: selectedRemedy!)
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func delayRemedyButtonPressed(_ sender: Any) {
-        
+        delegate?.delayRemedyButtonPressed(forRemedy: selectedRemedy!)
         self.dismiss(animated: true, completion: nil)
     }
     

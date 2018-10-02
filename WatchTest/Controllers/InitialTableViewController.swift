@@ -32,14 +32,11 @@ class InitialTableViewController: UITableViewController {
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
 
-        localNotificationCenter.delegate = self
+        configureLocalNotificationCenter()
         
         let nibRemedyCell = UINib(nibName: "RemedyTableViewCell", bundle: nil)
-        
-        tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
-        
         let nibReusable = UINib(nibName: "ReusableView", bundle: nil)
-        
+        tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
         tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
 
         remedies = CoreDataManager.sharedManager.fetchRemedies()
@@ -52,6 +49,17 @@ class InitialTableViewController: UITableViewController {
 
     }
     
+    func configureLocalNotificationCenter() {
+        localNotificationCenter.delegate = self
+        
+        let takeRemedy = UNNotificationAction(identifier: "takeRemedy", title: "Tomar Remedio", options: [.foreground])
+        let delayRemedy = UNNotificationAction(identifier: "delayRemedy", title: "Adiar Remedio", options: [.foreground])
+        
+        let remedyScheduleCategory = UNNotificationCategory.init(identifier: "remedyScheduleCategory", actions: [takeRemedy,delayRemedy], intentIdentifiers: [], options: [])
+        
+        UNUserNotificationCenter.current().setNotificationCategories([remedyScheduleCategory])
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         remedies = CoreDataManager.sharedManager.fetchRemedies()
         localNotificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
@@ -61,10 +69,31 @@ class InitialTableViewController: UITableViewController {
         })
         self.tableView.reloadData()
     }
+    
+    // MARK - Methods
+    
+    func takeRemedy() {
+        print("take")
+    }
+    
+    func delayRemedy() {
+        // TODO
+    }
+    
+    
+    
+    // MARK - Actions
 
+    
     @IBAction func addRemedyButtomPressed(_ sender: Any) {
         performSegue(withIdentifier: "New", sender: nil)
     }
+    
+    
+    
+    
+    
+    
     
     // MARK: - Table view data source
 
@@ -101,7 +130,7 @@ class InitialTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ReusableView") as! ReusableView
         if section == 0 {
-            footer.viewTitle.text = "Tome seu remédio em dia, isso ajuda na recuperação"
+            footer.viewTitle.text = "Tome seu remédio em dia,\nisso ajuda na recuperação"
         } else {
             footer.viewTitle.text = ""
         }
@@ -214,13 +243,21 @@ class InitialTableViewController: UITableViewController {
 
 
 extension InitialTableViewController: UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print ("Tapped in notification")
-    }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print ("Notification being triggered")
         completionHandler([.alert,.sound,.badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        switch response.actionIdentifier {
+        case "takeRemedy":
+            print("take")
+        case "delayRemedy":
+            print("delay")
+        default:
+            print("wtf")
+        }
+        print(completionHandler)
     }
 }
 
@@ -291,3 +328,15 @@ extension InitialTableViewController : WCSessionDelegate {
     }
 }
 
+extension InitialTableViewController: RemedyInfoViewControllerDelegate {
+    func takeRemedyButtonPressed(forRemedy: CDRemedy) {
+        takeRemedy()
+    }
+    
+    func delayRemedyButtonPressed(forRemedy: CDRemedy) {
+        
+        delayRemedy()
+        
+        print("Delay")
+    }
+}

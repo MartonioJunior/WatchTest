@@ -33,6 +33,7 @@
 		BE669752216253C1004F7A85 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE669751216253C1004F7A85 /* HealthKit.framework */; };
 		BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */; };
 		BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */; };
+		BECC6F8D2163A567003E7A6F /* RemedyInfoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECC6F8C2163A567003E7A6F /* RemedyInfoViewControllerDelegate.swift */; };
 		BEDA995F215CF93300A34B36 /* RemedyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */; };
 		F18B8C3421623AA900F926A0 /* MessageWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18B8C3321623AA900F926A0 /* MessageWatch.swift */; };
 		F18B8C3521623DA600F926A0 /* MessageWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18B8C3321623AA900F926A0 /* MessageWatch.swift */; };
@@ -125,6 +126,7 @@
 		BE669753216253C1004F7A85 /* WatchTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchTest.entitlements; sourceTree = "<group>"; };
 		BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemedyViewController.swift; sourceTree = "<group>"; };
+		BECC6F8C2163A567003E7A6F /* RemedyInfoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyInfoViewControllerDelegate.swift; sourceTree = "<group>"; };
 		BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyInfoViewController.swift; sourceTree = "<group>"; };
 		F18B8C3321623AA900F926A0 /* MessageWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageWatch.swift; sourceTree = "<group>"; };
 		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				BE669753216253C1004F7A85 /* WatchTest.entitlements */,
+				BECC6F8B2163A554003E7A6F /* Delegates */,
 				BE5EB295215BAD04002D45D9 /* Views */,
 				BE5EB294215BAD00002D45D9 /* Controllers */,
 				BE5EB296215BAD09002D45D9 /* Models */,
@@ -271,6 +274,14 @@
 				BE669751216253C1004F7A85 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BECC6F8B2163A554003E7A6F /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				BECC6F8C2163A567003E7A6F /* RemedyInfoViewControllerDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		F1CE2391215A833400077508 /* resources */ = {
@@ -456,6 +467,7 @@
 			files = (
 				BE5EB293215BAC42002D45D9 /* InitialTableViewController.swift in Sources */,
 				A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */,
+				BECC6F8D2163A567003E7A6F /* RemedyInfoViewControllerDelegate.swift in Sources */,
 				F18B8C3421623AA900F926A0 /* MessageWatch.swift in Sources */,
 				A2B9C43C215A823C0065D69A /* Remedy.swift in Sources */,
 				BE5EB29E215BAF87002D45D9 /* ReusableView.swift in Sources */,
