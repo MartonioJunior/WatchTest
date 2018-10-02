@@ -6,7 +6,7 @@
 //  Copyright © 2018 ifce. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Remedy : Codable {
     var name: String
@@ -24,5 +24,16 @@ class Remedy : Codable {
         self.remedyDescription = description
         self.taken = taken
     }
- 
+    
+    convenience init(withCDRemedy remdy : CDRemedy){
+        let interval = Int(remdy.interval)
+        self.init(id: remdy.id ?? UUID(), name: remdy.name!, interval: interval, description: remdy.remedyDescription ?? "sem descrição" , startDate: remdy.startDate!, taken: remdy.taken)
+    }
+}
+
+
+extension CDRemedy {
+    func asRemedy() -> Remedy {
+        return Remedy(withCDRemedy: self)
+    }
 }

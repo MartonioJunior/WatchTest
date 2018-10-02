@@ -75,21 +75,24 @@ class InterfaceController: WKInterfaceController {
         })
         noRemediesTodayLabel.setText(remedies.count <= 0 ? "No remedies to take!" : "")
         
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "hh:mm"
-        
-        tableRemedies.setNumberOfRows(remedies.count, withRowType: "TableRemedy")
-        
+        tableRemedies.setNumberOfRows(0, withRowType: "TableRemedy")
         for index in 0..<self.tableRemedies.numberOfRows {
-            guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { continue }
-            let remedy = remedies[index]
-            controller.remedy = remedy
-            controller.nomeLabel.setText(remedy.name)
-            let time = dateFormat.string(from: remedy.startDate)
-            controller.timeLabel.setText(time)
+            addRemedyToTable(remedy: remedies[index])
         }
     }
-
+    
+    func addRemedyToTable(remedy: Remedy){
+        remedies.append(remedy)
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "hh:mm"
+        let index = tableRemedies.numberOfRows
+        tableRemedies.setNumberOfRows( index + 1 , withRowType: "TableRemedy")
+        guard let controller = tableRemedies.rowController(at: index) as? RemedyRowController else { return }
+        controller.remedy = remedy
+        controller.nomeLabel.setText(remedy.name)
+        let time = dateFormat.string(from: remedy.startDate)
+        controller.timeLabel.setText(time)
+    }
 }
 
 extension InterfaceController: WCSessionDelegate {
@@ -111,7 +114,7 @@ extension InterfaceController: WCSessionDelegate {
             guard let msg = try? JSONDecoder().decode(MessageWatch.self, from: messageData) else{return}
             switch msg.eventType {
             case .new :
-                print("new")
+                self.didAdd(remedy: msg.remedy!)
             case .delay:
                 print("delay")
             case .getAll:
@@ -123,8 +126,8 @@ extension InterfaceController: WCSessionDelegate {
     }
     
     
-    func didTake(remedy : Remedy){
-        
+    func didAdd(remedy : Remedy){
+        addRemedyToTable(remedy: remedy)
     }
 }
 
