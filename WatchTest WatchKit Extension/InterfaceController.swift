@@ -14,6 +14,8 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var tableRemedies: WKInterfaceTable!
     @IBOutlet var noRemediesTodayLabel: WKInterfaceLabel!
     var remedies: [Remedy] = []
+    var timer: Timer = Timer()
+    var loadingFrame = 0
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -37,8 +39,19 @@ class InterfaceController: WKInterfaceController {
                 })
                 self.presentAlert(withTitle: "Unable to connect to device", message: "Make sure you are close to your device and try again later", preferredStyle: .alert, actions: [wkAction])
             }
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+                self.updateLoadingLabel()
+            })
         }
+    }
     
+    func updateLoadingLabel() {
+        var string = "Loading"
+        for _ in 0..<loadingFrame {
+            string += "."
+        }
+        noRemediesTodayLabel.setText(string)
+        loadingFrame = (loadingFrame+1)%4
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
@@ -73,7 +86,9 @@ class InterfaceController: WKInterfaceController {
                 return (r1Components.hour ?? 0) < (r2Components.hour ?? 0)
             }
         })
-        noRemediesTodayLabel.setText(remedies.count <= 0 ? "No remedies to take!" : "")
+        
+        self.timer.invalidate()
+        noRemediesTodayLabel.setText(self.remedies.count <= 0 ? "No remedies to take!" : "")
         
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "hh:mm"
