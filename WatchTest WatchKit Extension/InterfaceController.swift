@@ -72,7 +72,6 @@ class InterfaceController: WKInterfaceController {
             }
         })
         
-        self.timer.invalidate()
         noRemediesTodayLabel.setText(self.remedies.count <= 0 ? "No remedies to take!" : "")
         
         tableRemedies.setNumberOfRows(self.remedies.count, withRowType: "TableRemedy")
