@@ -72,7 +72,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AK7-Ok-4do">
-                                <rect key="frame" x="16" y="36" width="24" height="24"/>
+                                <rect key="frame" x="16" y="28" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="bhO-Sg-mGB"/>
                                     <constraint firstAttribute="width" constant="24" id="e2J-Bh-F0p"/>
@@ -150,7 +150,7 @@
                             <constraint firstItem="iTq-6m-xgR" firstAttribute="width" secondItem="OiG-xl-5rm" secondAttribute="width" id="56K-df-6bu"/>
                             <constraint firstItem="OiG-xl-5rm" firstAttribute="centerX" secondItem="Rhf-uO-Cmk" secondAttribute="centerX" id="6zx-qK-Ddj"/>
                             <constraint firstItem="iTq-6m-xgR" firstAttribute="height" secondItem="OiG-xl-5rm" secondAttribute="height" id="7UY-NM-MmO"/>
-                            <constraint firstItem="AK7-Ok-4do" firstAttribute="top" secondItem="hcQ-y7-8MM" secondAttribute="top" constant="16" id="Agt-ib-Ioe"/>
+                            <constraint firstItem="AK7-Ok-4do" firstAttribute="top" secondItem="hcQ-y7-8MM" secondAttribute="top" constant="8" id="Agt-ib-Ioe"/>
                             <constraint firstItem="sMB-Oy-f6Z" firstAttribute="width" secondItem="M0v-J1-wkn" secondAttribute="width" id="BTh-qE-mOW"/>
                             <constraint firstItem="ny0-YB-my7" firstAttribute="leading" secondItem="hcQ-y7-8MM" secondAttribute="leading" constant="16" id="BmY-Yn-UlD"/>
                             <constraint firstItem="Ukp-1J-rjI" firstAttribute="centerX" secondItem="Rhf-uO-Cmk" secondAttribute="centerX" id="BnC-zB-CE2"/>

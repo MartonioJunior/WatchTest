@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import WatchConnectivity
 
 class AddRemedyViewController: UIViewController  {
@@ -19,35 +20,23 @@ class AddRemedyViewController: UIViewController  {
     
     @IBOutlet weak var remedyDescription: UITextView!
     
+    var localNotificationCenter: UNUserNotificationCenter?
     
     var accessoryToolbar: UIToolbar {
         
         get {
-            
             let toolbarFrame = CGRect(x: 0, y: 0,
-                                      
                                       width: view.frame.width, height: 44)
-            
             let accessoryToolbar = UIToolbar(frame: toolbarFrame)
-            
             let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
-                                             
                                              target: self,
-                                             
                                              action: #selector(onDoneButtonTapped(sender:)))
-            
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                                
                                                 target: nil,
-                                                
                                                 action: nil)
-            
             accessoryToolbar.items = [flexibleSpace, doneButton]
-            
             accessoryToolbar.barTintColor = UIColor.white
-            
             return accessoryToolbar
-            
         }
         
     }
@@ -69,13 +58,65 @@ class AddRemedyViewController: UIViewController  {
 //        Resizing View.
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        
+        //            Ver todas as notificações.
+        
       }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func addNewRemedy(_ sender: Any) {
+    func createNewNotification(initialDate: Date, remedyFrequency: Double, remedyName: String, remedyDescription: String) {
+        
+        for times in 0...(Int(remedyFrequency) - 1) {
+            let frequencyInterval = ((86400/remedyFrequency)*Double(times))
+            let date = Date.init(timeInterval: frequencyInterval, since: initialDate)
+            //        Conteudo da notificação.
+            let content = UNMutableNotificationContent()
+            content.title = remedyName
+            content.body = remedyDescription
+            content.sound = UNNotificationSound.default()
+            
+            //        Trigger para a notificação, baseado na data.
+            let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: true)
+            
+            let identifier = "\(remedyName) - \(times) - \(Date.init(timeIntervalSinceNow: 0))"
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            localNotificationCenter?.add(request, withCompletionHandler: { (error) in
+                if let error = error {
+                    print (error)
+                }
+            })
+
+        }
+
+    }
+    
+    func requestNotificationAuthorization() {
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        localNotificationCenter?.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            } else {
+                self.localNotificationCenter?.getNotificationSettings {
+                    (settings) in
+                    if settings.authorizationStatus != .authorized {
+                        print("teste")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.saveRemedyToDB()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func saveRemedyToDB() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let newDate = dateFormatter.date(from: startDate.text!)
@@ -85,7 +126,19 @@ class AddRemedyViewController: UIViewController  {
             guard let data = try? JSONEncoder().encode(msg) else {return}
             WCSession.default.sendMessageData(data, replyHandler: nil, errorHandler: nil)
         }
+        
+        let frequency = 24/(Int64(interval.text!)!)
+        print(frequency)
+        
+        createNewNotification(initialDate: newDate!, remedyFrequency: Double(frequency), remedyName: remedyName.text!, remedyDescription: remedyDescription.text)
+        
+        
+        
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func addNewRemedy(_ sender: Any) {
+        requestNotificationAuthorization()
     }
     
     @objc func onDoneButtonTapped(sender: UIBarButtonItem) {

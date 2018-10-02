@@ -8,9 +8,12 @@
 
 import UIKit
 import WatchConnectivity
+import UserNotifications
 
 class InitialTableViewController: UITableViewController {
-//    var remedies = [[Remedy](),[Remedy]()]
+
+    let localNotificationCenter = UNUserNotificationCenter.current()
+
     var remedies:[CDRemedy]?
    
     override func viewDidLoad() {
@@ -28,24 +31,34 @@ class InitialTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
-        
-        
+
+        localNotificationCenter.delegate = self
         
         let nibRemedyCell = UINib(nibName: "RemedyTableViewCell", bundle: nil)
-        tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
-        let nibReusable = UINib(nibName: "ReusableView", bundle: nil)
-        tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
         
+        tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
+        
+        let nibReusable = UINib(nibName: "ReusableView", bundle: nil)
+        
+        tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
+
         remedies = CoreDataManager.sharedManager.fetchRemedies()
 
         for remedy in remedies! {
+
             print(remedy.name)
+
         }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         remedies = CoreDataManager.sharedManager.fetchRemedies()
+        localNotificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
+            for request in requests {
+                print(request)
+            }
+        })
         self.tableView.reloadData()
     }
 
@@ -65,7 +78,9 @@ class InitialTableViewController: UITableViewController {
         if section == 0 {
             return remedies!.count
         } else if section == 1 {
-            return remedies!.count
+            return remedies!.filter({
+                $0.taken
+            }).count
         }
         return 0
     }
@@ -184,6 +199,10 @@ class InitialTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "New" {
+            let viewController = segue.destination as! AddRemedyViewController
+            viewController.localNotificationCenter = self.localNotificationCenter
+        }
         if segue.identifier == "Info" {
             let viewController = segue.destination as! RemedyInfoViewController
             let selectedRemedy = sender as! CDRemedy
@@ -193,6 +212,17 @@ class InitialTableViewController: UITableViewController {
 
 }
 
+
+extension InitialTableViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print ("Tapped in notification")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print ("Notification being triggered")
+        completionHandler([.alert,.sound,.badge])
+    }
+}
 
 extension InitialTableViewController : WCSessionDelegate {
     
@@ -259,6 +289,5 @@ extension InitialTableViewController : WCSessionDelegate {
         guard let data = try? JSONEncoder().encode(remedy) else {return}
         replyHandler(data)
     }
-    
 }
 
