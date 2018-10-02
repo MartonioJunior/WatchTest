@@ -75,12 +75,10 @@ class InitialTableViewController: UITableViewController {
     
     //
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return remedies!.count
-        } else if section == 1 {
-            return remedies!.filter({
-                $0.taken
-            }).count
+        if let list = remedies {
+            let noTaken = list.filter{!$0.taken}.count
+            let taken = list.count - noTaken
+            return section == 0 ? noTaken : taken
         }
         return 0
     }
@@ -128,7 +126,9 @@ class InitialTableViewController: UITableViewController {
     //
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RemedyCell", for: indexPath) as! RemedyTableViewCell
-        let remedy = remedies![indexPath.row]
+        let s = indexPath.section
+        guard let list = remedies?.filter({s == 0 ? !$0.taken : $0.taken }) else {return cell}
+        let remedy = list[indexPath.row]
         cell.remedyName.text = remedy.name
         cell.accessoryType = remedy.taken ? .checkmark : .none
         
@@ -157,7 +157,7 @@ class InitialTableViewController: UITableViewController {
         }
 
         let take = UITableViewRowAction(style: .default, title: "take") { action, indexPath in
-            let remedy =  Remedy(withCDRemedy: self.remedies![indexPath.item])
+            let remedy = Remedy(withCDRemedy: self.remedies![indexPath.item])
             let encoder = JSONEncoder()
             let msg = MessageWatch(eventType: .taken, remedy: remedy)
             guard let data = try? encoder.encode(msg) else {return}
@@ -283,10 +283,9 @@ extension InitialTableViewController : WCSessionDelegate {
         guard let cdRemedy = self.remedies?.first(where: { remedy in
             return msg.remedy?.id == remedy.id
         }) else { return }
-        let remedy = Remedy(withCDRemedy: cdRemedy)
-        remedy.taken = true
+        cdRemedy.taken = true
         self.tableView.reloadData()
-        guard let data = try? JSONEncoder().encode(remedy) else {return}
+        guard let data = try? JSONEncoder().encode(cdRemedy.asRemedy()) else {return}
         replyHandler(data)
     }
 }
