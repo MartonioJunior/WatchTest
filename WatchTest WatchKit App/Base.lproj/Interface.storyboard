@@ -112,7 +112,7 @@
             <objects>
                 <controller id="4sK-HA-Art" customClass="NotificationController" customModule="WatchTest_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label alignment="left" text="Label" id="krx-75-DvU"/>
+                        <label alignment="left" text="Label" numberOfLines="0" id="krx-75-DvU"/>
                     </items>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="krx-75-DvU" id="SHB-XY-fLI"/>
