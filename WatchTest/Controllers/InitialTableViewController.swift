@@ -25,18 +25,25 @@ class InitialTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        localNotificationCenter.delegate = self
-        let nibRemedyCell = UINib(nibName: "RemedyTableViewCell", bundle: nil)
-        tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
-        let nibReusable = UINib(nibName: "ReusableView", bundle: nil)
-        tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
         
+        localNotificationCenter.delegate = self
+        
+        let nibRemedyCell = UINib(nibName: "RemedyTableViewCell", bundle: nil)
+        
+        tableView.register(nibRemedyCell, forCellReuseIdentifier: "RemedyCell")
+        
+        let nibReusable = UINib(nibName: "ReusableView", bundle: nil)
+        
+        tableView.register(nibReusable, forHeaderFooterViewReuseIdentifier: "ReusableView")
+
         remedies = CoreDataManager.sharedManager.fetchRemedies()
 
         for remedy in remedies! {
+
             print(remedy.name)
+
         }
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

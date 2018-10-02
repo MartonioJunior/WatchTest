@@ -71,7 +71,7 @@ class AddRemedyViewController: UIViewController {
         
         for times in 0...(Int(remedyFrequency) - 1) {
             let frequencyInterval = ((86400/remedyFrequency)*Double(times))
-            let date = Date.init(timeInterval: TimeInterval(times * 15), since: initialDate)
+            let date = Date.init(timeInterval: frequencyInterval, since: initialDate)
             //        Conteudo da notificação.
             let content = UNMutableNotificationContent()
             content.title = remedyName
