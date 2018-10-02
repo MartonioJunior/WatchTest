@@ -268,3 +268,4 @@ extension InitialTableViewController : WCSessionDelegate {
     func didTaken(msg : MessageWatch , replyHandler : @escaping (Data) -> Void)  {
     }
 }
+

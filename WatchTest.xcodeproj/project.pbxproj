@@ -23,8 +23,8 @@
 		A2B9C423215A523D0065D69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B9C422215A523D0065D69A /* Assets.xcassets */; };
 		A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C436215A72370065D69A /* database.xcdatamodeld */; };
 		A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */; };
-		A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
-		A2B9C43D215BA8890065D69A /* Remedio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedio.swift */; };
+		A2B9C43C215A823C0065D69A /* Remedy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedy.swift */; };
+		A2B9C43D215BA8890065D69A /* Remedy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C43B215A823C0065D69A /* Remedy.swift */; };
 		BE5EB293215BAC42002D45D9 /* InitialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EB292215BAC42002D45D9 /* InitialTableViewController.swift */; };
 		BE5EB299215BAD5E002D45D9 /* RemedyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5EB297215BAD5E002D45D9 /* RemedyTableViewCell.swift */; };
 		BE5EB29A215BAD5E002D45D9 /* RemedyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE5EB298215BAD5E002D45D9 /* RemedyTableViewCell.xib */; };
@@ -33,9 +33,10 @@
 		BE669752216253C1004F7A85 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE669751216253C1004F7A85 /* HealthKit.framework */; };
 		BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */; };
 		BEBC0C20215BC5C500F151BB /* AddRemedyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */; };
+		BEDA995F215CF93300A34B36 /* RemedyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */; };
 		F18B8C3421623AA900F926A0 /* MessageWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18B8C3321623AA900F926A0 /* MessageWatch.swift */; };
 		F18B8C3521623DA600F926A0 /* MessageWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18B8C3321623AA900F926A0 /* MessageWatch.swift */; };
-		BEDA995F215CF93300A34B36 /* RemedyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */; };
+		F18B8C3621626E6C00F926A0 /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A2B9C436215A72370065D69A /* database.xcdatamodeld */; };
 		F1CE2390215A831100077508 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F1CE238F215A831100077508 /* README.md */; };
 		F1CE2393215A836200077508 /* iphone_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2392215A836200077508 /* iphone_design.png */; };
 		F1CE2395215A838E00077508 /* watch_design.png in Resources */ = {isa = PBXBuildFile; fileRef = F1CE2394215A838E00077508 /* watch_design.png */; };
@@ -114,7 +115,7 @@
 		A2B9C425215A523D0065D69A /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		A2B9C437215A72370065D69A /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		A2B9C439215A7FDA0065D69A /* RemedyRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyRowController.swift; sourceTree = "<group>"; };
-		A2B9C43B215A823C0065D69A /* Remedio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remedio.swift; sourceTree = "<group>"; };
+		A2B9C43B215A823C0065D69A /* Remedy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remedy.swift; sourceTree = "<group>"; };
 		BE5EB292215BAC42002D45D9 /* InitialTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialTableViewController.swift; sourceTree = "<group>"; };
 		BE5EB297215BAD5E002D45D9 /* RemedyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyTableViewCell.swift; sourceTree = "<group>"; };
 		BE5EB298215BAD5E002D45D9 /* RemedyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RemedyTableViewCell.xib; sourceTree = "<group>"; };
@@ -124,8 +125,8 @@
 		BE669753216253C1004F7A85 /* WatchTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchTest.entitlements; sourceTree = "<group>"; };
 		BEBC0C1C215BBEE300F151BB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BEBC0C1F215BC5C500F151BB /* AddRemedyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemedyViewController.swift; sourceTree = "<group>"; };
-		F18B8C3321623AA900F926A0 /* MessageWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageWatch.swift; sourceTree = "<group>"; };
 		BEDA995E215CF93300A34B36 /* RemedyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemedyInfoViewController.swift; sourceTree = "<group>"; };
+		F18B8C3321623AA900F926A0 /* MessageWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageWatch.swift; sourceTree = "<group>"; };
 		F1CE238F215A831100077508 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F1CE2392215A836200077508 /* iphone_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_design.png; sourceTree = "<group>"; };
 		F1CE2394215A838E00077508 /* watch_design.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch_design.png; sourceTree = "<group>"; };
@@ -258,7 +259,7 @@
 		BE5EB296215BAD09002D45D9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A2B9C43B215A823C0065D69A /* Remedio.swift */,
+				A2B9C43B215A823C0065D69A /* Remedy.swift */,
 				F18B8C3321623AA900F926A0 /* MessageWatch.swift */,
 			);
 			path = Models;
@@ -456,7 +457,7 @@
 				BE5EB293215BAC42002D45D9 /* InitialTableViewController.swift in Sources */,
 				A2B9C438215A72370065D69A /* database.xcdatamodeld in Sources */,
 				F18B8C3421623AA900F926A0 /* MessageWatch.swift in Sources */,
-				A2B9C43C215A823C0065D69A /* Remedio.swift in Sources */,
+				A2B9C43C215A823C0065D69A /* Remedy.swift in Sources */,
 				BE5EB29E215BAF87002D45D9 /* ReusableView.swift in Sources */,
 				A2B9C3EF215A523A0065D69A /* AppDelegate.swift in Sources */,
 				BEBC0C1D215BBEE300F151BB /* CoreDataManager.swift in Sources */,
@@ -480,10 +481,11 @@
 			files = (
 				A22D53EE215CF429004F10CD /* DetailInterfaceController.swift in Sources */,
 				F18B8C3521623DA600F926A0 /* MessageWatch.swift in Sources */,
+				F18B8C3621626E6C00F926A0 /* database.xcdatamodeld in Sources */,
 				A2B9C421215A523D0065D69A /* NotificationController.swift in Sources */,
 				A2B9C41F215A523D0065D69A /* ExtensionDelegate.swift in Sources */,
 				A2B9C43A215A7FDA0065D69A /* RemedyRowController.swift in Sources */,
-				A2B9C43D215BA8890065D69A /* Remedio.swift in Sources */,
+				A2B9C43D215BA8890065D69A /* Remedy.swift in Sources */,
 				A2B9C41D215A523D0065D69A /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

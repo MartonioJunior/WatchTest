@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class AddRemedyViewController: UIViewController {
+class AddRemedyViewController: UIViewController  {
 
     @IBOutlet weak var remedyName: UITextField!
     
