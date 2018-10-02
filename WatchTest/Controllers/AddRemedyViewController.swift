@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import WatchConnectivity
 
 class AddRemedyViewController: UIViewController  {
 
@@ -119,6 +120,12 @@ class AddRemedyViewController: UIViewController  {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let newDate = dateFormatter.date(from: startDate.text!)
+        let cdRemedy = CoreDataManager.sharedManager.saveRemedy(name: remedyName.text!, remedyDescription: remedyDescription.text, startDate: newDate!, interval: Int64(interval.text!)!)
+        if let remedy = cdRemedy?.asRemedy() {
+            let msg = MessageWatch(eventType: Event.new, remedy : remedy)
+            guard let data = try? JSONEncoder().encode(msg) else {return}
+            WCSession.default.sendMessageData(data, replyHandler: nil, errorHandler: nil)
+        }
         CoreDataManager.sharedManager.saveRemedy(name: remedyName.text!, remedyDescription: remedyDescription.text, startDate: newDate!, interval: Int64(interval.text!)!)
         
         let frequency = 24/(Int64(interval.text!)!)
